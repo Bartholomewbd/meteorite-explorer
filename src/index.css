@@ -17,3 +17,8 @@ th,
 td {
   border: 1px solid black;
 }
+
+.col-centered {
+  margin: 0 auto;
+  float: none;
+}

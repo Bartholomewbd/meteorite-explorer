@@ -3,8 +3,8 @@ import React from "react";
 const MeteorList = ({ meteorites }) => {
   return (
     <div>
-      <table>
-        <tbody>
+      <table className="table table-hover table-active ">
+        <thead>
           <tr>
             <th>Name</th>
             <th>Id</th>
@@ -13,13 +13,25 @@ const MeteorList = ({ meteorites }) => {
             <th>Latitude</th>
             <th>Longitude</th>
           </tr>
-          {meteorites.map(meteor => {
+        </thead>
+        <tbody>
+          {meteorites.map((meteor, i) => {
+            const classes = [];
+            if (i % 2 === 0) {
+              classes.push("table-primary");
+            } else {
+              classes.push("table-secondary");
+            }
+            let year;
+            if (meteor.year) {
+              year = meteor.year.slice(0, 4);
+            }
             return (
-              <tr key={meteor.id}>
+              <tr className={classes} key={meteor.id}>
                 <td>{meteor.name}</td>
                 <td>{meteor.id}</td>
                 <td>{meteor.mass}</td>
-                <td>{meteor.year}</td>
+                <td>{year}</td>
                 <td>{meteor.reclat}</td>
                 <td>{meteor.reclong}</td>
               </tr>

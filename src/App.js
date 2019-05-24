@@ -37,6 +37,7 @@ class App extends Component {
 
     return (
       <div>
+        <h1 style={{ textAlign: "center" }}>Meteorite Explorer</h1>
         <SearchBox searchChange={this.onSearchChange} />
         <MeteorList meteorites={filteredMeteorites} />
       </div>
