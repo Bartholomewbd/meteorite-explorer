@@ -6,23 +6,25 @@ import SearchBox from "./components/SearchBox";
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
+      input: "",
       searchValue: "",
       data: []
     };
   }
 
   onSearchChange = e => {
-    this.setState({ searchValue: e.target.value });
-    console.log(this.state.searchValue);
+    this.setState({ input: e.target.value });
+  };
+
+  onDetectSubmit = () => {
+    this.setState({ searchValue: this.state.input });
   };
 
   componentDidMount() {
     fetch("https://data.nasa.gov/resource/gh4g-9sfh.json")
       .then(response => response.json())
       .then(data => this.setState({ data }));
-    console.log();
   }
 
   render() {
@@ -38,7 +40,10 @@ class App extends Component {
     return (
       <div>
         <h1 style={{ textAlign: "center" }}>Meteorite Explorer</h1>
-        <SearchBox searchChange={this.onSearchChange} />
+        <SearchBox
+          onSearchChange={this.onSearchChange}
+          onDetectSubmit={this.onDetectSubmit}
+        />
         <MeteorList meteorites={filteredMeteorites} />
       </div>
     );
